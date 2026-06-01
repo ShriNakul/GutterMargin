@@ -1,58 +1,10 @@
 import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export function useStories() {
   const [stories, setStories] = useState(() => {
     const savedStories = localStorage.getItem("gutter_margin_stories");
-    return savedStories
-      ? JSON.parse(savedStories)
-      : [
-          {
-            id: 1,
-            title: "Story DXD",
-            arcs: [
-              {
-                id: 101,
-                title: "Arc 1: The Awakening",
-                chapters: [
-                  {
-                    id: 1001,
-                    title: "Chapter 1: Pilot",
-                    content: "Write your draft here...",
-                  },
-                ],
-              },
-            ],
-            characters: [
-              {
-                id: 501,
-                name: "Issei",
-                role: "Protagonist",
-                description: "Vibrant high schooler.",
-                abilities: "Boosted Gear",
-              },
-            ],
-            raft: {
-              role: "Hero",
-              audience: "Teens",
-              format: "Light Novel",
-              topic: "Finding balance",
-            },
-          },
-          {
-            id: 2,
-            title: "Monkey Tamer",
-            arcs: [],
-            characters: [],
-            raft: { role: "", audience: "", format: "", topic: "" },
-          },
-          {
-            id: 3,
-            title: "GuMa's Bizzare Story",
-            arcs: [],
-            characters: [],
-            raft: { role: "", audience: "", format: "", topic: "" },
-          },
-        ];
+    return savedStories ? JSON.parse(savedStories) : [];
   });
 
   const [activeStoryId, setActiveStoryId] = useState(null);
