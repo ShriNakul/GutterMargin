@@ -3,7 +3,56 @@ import { useState, useEffect } from "react";
 export function useStories() {
   const [stories, setStories] = useState(() => {
     const savedStories = localStorage.getItem("gutter_margin_stories");
-    return savedStories ? JSON.parse(savedStories) : null;
+    return savedStories
+      ? JSON.parse(savedStories)
+      : [
+          {
+            id: 1,
+            title: "Story DXD",
+            arcs: [
+              {
+                id: 101,
+                title: "Arc 1: The Awakening",
+                chapters: [
+                  {
+                    id: 1001,
+                    title: "Chapter 1: Pilot",
+                    content: "Write your draft here...",
+                  },
+                ],
+              },
+            ],
+            characters: [
+              {
+                id: 501,
+                name: "Issei",
+                role: "Protagonist",
+                description: "Vibrant high schooler.",
+                abilities: "Boosted Gear",
+              },
+            ],
+            raft: {
+              role: "Hero",
+              audience: "Teens",
+              format: "Light Novel",
+              topic: "Finding balance",
+            },
+          },
+          {
+            id: 2,
+            title: "Monkey Tamer",
+            arcs: [],
+            characters: [],
+            raft: { role: "", audience: "", format: "", topic: "" },
+          },
+          {
+            id: 3,
+            title: "GuMa's Bizzare Story",
+            arcs: [],
+            characters: [],
+            raft: { role: "", audience: "", format: "", topic: "" },
+          },
+        ];
   });
 
   const [activeStoryId, setActiveStoryId] = useState(null);
@@ -14,26 +63,32 @@ export function useStories() {
     localStorage.setItem("gutter_margin_stories", JSON.stringify(stories));
   }, [stories]);
 
-  const currentStory = stories.find((s) => s.id === activeStoryId);
+  const currentStory = activeStoryId
+    ? stories.find((s) => s.id === activeStoryId)
+    : null;
 
   useEffect(() => {
-    if (currentStory) {
-      if (currentStory.arcs && currentStory.arcs.length > 0) {
-        setActiveArcId(currentStory.arcs[0].id);
-        if (
-          currentStory.arcs[0].chapters &&
-          currentStory.arcs[0].chapters.length > 0
-        ) {
-          setActiveChapId(currentStory.arcs[0].chapters[0].id);
-        } else {
-          setActiveChapId(null);
-        }
+    if (!currentStory) {
+      setActiveArcId(null);
+      setActiveChapId(null);
+      return;
+    }
+
+    if (currentStory.arcs && currentStory.arcs.length > 0) {
+      setActiveArcId(currentStory.arcs[0].id);
+      if (
+        currentStory.arcs[0].chapters &&
+        currentStory.arcs[0].chapters.length > 0
+      ) {
+        setActiveChapId(currentStory.arcs[0].chapters[0].id);
       } else {
-        setActiveArcId(null);
         setActiveChapId(null);
       }
+    } else {
+      setActiveArcId(null);
+      setActiveChapId(null);
     }
-  }, [activeStoryId]);
+  }, [activeStoryId, currentStory]);
 
   const updateStoryNestedData = (updatedStory) => {
     setStories(
@@ -57,6 +112,7 @@ export function useStories() {
   };
 
   const addArc = (title) => {
+    if (!currentStory) return;
     const newArc = { id: Date.now(), title, chapters: [] };
     const updated = {
       ...currentStory,
@@ -67,7 +123,7 @@ export function useStories() {
   };
 
   const addChapter = (title) => {
-    if (!activeArcId) return;
+    if (!currentStory || !activeArcId) return;
     const newChap = { id: Date.now(), title, content: "" };
     const updatedArcs = currentStory.arcs.map((arc) => {
       if (arc.id === activeArcId) {
@@ -80,6 +136,7 @@ export function useStories() {
   };
 
   const updateChapterContent = (newText) => {
+    if (!currentStory || !activeArcId) return;
     const updatedArcs = currentStory.arcs.map((arc) => {
       if (arc.id === activeArcId) {
         const updatedChaps = arc.chapters.map((chap) => {
@@ -96,6 +153,7 @@ export function useStories() {
   };
 
   const addCharacter = (characterData) => {
+    if (!currentStory) return;
     const newChar = { id: Date.now(), ...characterData };
     const updated = {
       ...currentStory,
@@ -105,6 +163,7 @@ export function useStories() {
   };
 
   const deleteCharacter = (id) => {
+    if (!currentStory) return;
     const updated = {
       ...currentStory,
       characters: currentStory.characters.filter((c) => c.id !== id),
@@ -113,6 +172,7 @@ export function useStories() {
   };
 
   const updateRaft = (field, value) => {
+    if (!currentStory) return;
     const updated = {
       ...currentStory,
       raft: {
