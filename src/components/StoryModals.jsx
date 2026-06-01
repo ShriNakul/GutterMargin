@@ -24,7 +24,7 @@ function StoryModals({
       <Modal
         isOpen={showStoryModal}
         onClose={() => setShowStoryModal(false)}
-        title="Create New Epic Story"
+        title="Create A New Story"
       >
         <form
           onSubmit={(e) => {
