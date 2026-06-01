@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useState, useEffect } from "react";
 
 export function useStories() {
   const [stories, setStories] = useState(() => {
