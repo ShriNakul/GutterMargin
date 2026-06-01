@@ -1,0 +1,229 @@
+* {
+  font-family: "Fredoka", cursive;
+  color: #ffffff;
+}
+
+body {
+  background: linear-gradient(135deg, #449598 0%, #58c4c8 50%, #68faff 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.header-bg {
+  background: linear-gradient(135deg, #ffbd59 0%, #ff9800 50%, #ee8b35 100%);
+  border-radius: 50px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn {
+  background: linear-gradient(
+    135deg,
+    #ffbd59 0%,
+    #ff9800 50%,
+    #ee8b35 100%
+  ) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 20px !important;
+  padding: 10px 24px !important;
+  font-weight: 500;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn:hover {
+  background: linear-gradient(
+    135deg,
+    #a67a38 0%,
+    #534023 50%,
+    #2c2118 100%
+  ) !important;
+  color: #ffc993e0 !important;
+}
+
+.story-card {
+  background: linear-gradient(135deg, #ffbd59 0%, #ff9800 50%, #ee8b35 100%);
+  border-radius: 40px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-5px);
+}
+
+.image-window {
+  background-color: #ffffff;
+  border-radius: 30px;
+  aspect-ratio: 2 / 1;
+  width: 100%;
+}
+
+.story-title {
+  color: #ffffff;
+  margin-top: 16px;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  line-height: 28px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-btn:hover {
+  background: #dc3545;
+  color: white;
+}
+
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.custom-modal-card {
+  background: linear-gradient(135deg, #449598 0%, #58c4c8 100%);
+  border-radius: 30px;
+  border: 4px solid #ff9800;
+  width: 100%;
+  max-width: 500px;
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.custom-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.form-control,
+.form-select {
+  border-radius: 15px;
+  color: #333 !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 0 0.25rem rgba(255, 152, 0, 0.25);
+}
+
+.workspace-container {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.workspace-tab-btn {
+  background: transparent;
+  border: 2px solid transparent;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 15px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.workspace-tab-btn.active {
+  background: #ff9800;
+  border-color: #ffbd59;
+  color: #fff;
+}
+
+.workspace-sidebar {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.sidebar-item {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  width: 100%;
+  text-align: left;
+  padding: 10px 15px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  transition: background 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-item.active {
+  background: #ff9800;
+  font-weight: bold;
+}
+
+.sidebar-item:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.char-card {
+  background: white;
+  color: #333;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.char-card * {
+  color: #333;
+}
+
+.raft-box {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  height: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.raft-box label {
+  color: #ff9800;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.raft-box textarea {
+  border: 1px solid #ddd;
+  resize: none;
+}
